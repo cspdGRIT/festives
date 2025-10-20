@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeasonKart - Your Local Seasonal Shop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '🪔✨🎉🎊🌸';
+            position: absolute;
+            font-size: 80px;
+            opacity: 0.1;
+            top: 20%;
+            left: 10%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '🎆🪁🎁🕉️🌺';
+            position: absolute;
+            font-size: 80px;
+            opacity: 0.1;
+            bottom: 20%;
+            right: 10%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero .tagline {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        .hero .chaicheers {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 12px 30px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1.1em;
+            font-weight: 500;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .cta-button {
+            background: white;
+            color: #667eea;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            color: #667eea;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 15px;
+            border-left: 6px solid #667eea;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .timeline-item h3 {
+            color: #667eea;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .timeline-item .festival {
+            color: #764ba2;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .timeline-item .items {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: #667eea;
+            box-shadow: 0 15px 50px rgba(102, 126, 234, 0.2);
+        }
+
+        .feature-card .icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .revenue-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 80px 20px;
+        }
+
+        .revenue-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .revenue-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .revenue-card h4 {
+            color: #ff6b6b;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .revenue-card .amount {
+            font-size: 2em;
+            color: #667eea;
+            font-weight: 700;
+            margin: 15px 0;
+        }
+
+        .stats-section {
+            background: #f8f9fa;
+            padding: 80px 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 40px auto 0;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .stat-box .number {
+            font-size: 3em;
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        .stat-box .label {
+            color: #666;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .cta-section .chaicheers-tag {
+            font-size: 1.3em;
+            margin: 20px 0;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .cta-btn {
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .cta-btn-primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .cta-btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .footer {
+            background: #2d3748;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            
+            .hero .tagline {
+                font-size: 1.2em;
+            }
+            
+            .section-title {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>🎉 SeasonKart 🎊</h1>
+        <p class="tagline">Your Local Seasonal Shop App</p>
+        <p>Pre-book festival essentials • Zero wastage • Community trust</p>
+        <div class="chaicheers">☕ ChaiCheers to celebrating together! 🎉</div>
+        <button class="cta-button">Start Pre-Booking Now</button>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">🌸 How SeasonKart Works</h2>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>August - September</h3>
+                <div class="festival">🪔 Rakhi & Ganesh Chaturthi</div>
+                <div class="items">Rakhis • Eco-Ganesh idols • Puja kits • Decorative items</div>
+            </div>
+
+            <div class="timeline-item">
+                <h3>October - November</h3>
+                <div class="festival">🪔 Navratri & Diwali</div>
+                <div class="items">Diyas • Sweets • Crackers • Lanterns • Candles • Fairy lights</div>
+            </div>
+
+            <div class="timeline-item">
+                <h3>January</h3>
+                <div class="festival">🪁 Sankranti & Pongal</div>
+                <div class="items">Kites • Manjha • Til sweets • Sugarcane • Traditional items</div>
+            </div>
+
+            <div class="timeline-item">
+                <h3>March</h3>
+                <div class="festival">🎨 Holi</div>
+                <div class="items">Herbal colors • Pichkaris • White T-shirts • Organic gulal</div>
+            </div>
+
+            <div class="timeline-item">
+                <h3>April - May</h3>
+                <div class="festival">☀️ Summer Essentials</div>
+                <div class="items">Water bottles • Coolers • Kids' pool toys • Summer gear</div>
+            </div>
+
+            <div class="timeline-item">
+                <h3>July</h3>
+                <div class="festival">🌧️ Monsoon Season</div>
+                <div class="items">Umbrellas • Raincoats • Waterproof covers</div>
+            </div>
+
+            <div class="timeline-item">
+                <h3>December</h3>
+                <div class="festival">🎄 Christmas & New Year</div>
+                <div class="items">Stars • Décor • Santa caps • Cakes • Party supplies</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="revenue-section">
+        <div class="container">
+            <h2 class="section-title" style="color: #fff;">💰 Revenue Potential</h2>
+            <div class="revenue-cards">
+                <div class="revenue-card">
+                    <h4>Diwali Campaign</h4>
+                    <div class="amount">₹10,000</div>
+                    <p>100 orders × ₹100 margin</p>
+                </div>
+                <div class="revenue-card">
+                    <h4>Holi Festival</h4>
+                    <div class="amount">₹8,400</div>
+                    <p>120 orders × ₹70 margin</p>
+                </div>
+                <div class="revenue-card">
+                    <h4>Rakhi Special</h4>
+                    <div class="amount">₹4,800</div>
+                    <p>80 orders × ₹60 margin</p>
+                </div>
+                <div class="revenue-card">
+                    <h4>Christmas Joy</h4>
+                    <div class="amount">₹7,200</div>
+                    <p>90 orders × ₹80 margin</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <div style="background: white; display: inline-block; padding: 30px 60px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.15);">
+                    <h3 style="color: #667eea; font-size: 2em;">Annual Profit: ₹30,000 - ₹50,000+</h3>
+                    <p style="color: #666; margin-top: 10px;">☕ Scale across societies for ₹2-5 Lakh - ChaiCheers to that! 🎉</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">✨ Why SeasonKart Works</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="icon">🎯</div>
+                <h3>Predictable Demand</h3>
+                <p>Festivals repeat annually with consistent needs. Plan inventory with confidence!</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📦</div>
+                <h3>Zero Wastage</h3>
+                <p>Pre-booking model means you order exactly what's needed. No unsold stock!</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🤝</div>
+                <h3>Hyperlocal Trust</h3>
+                <p>Community-based selling builds strong relationships and repeat customers.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📱</div>
+                <h3>Low Tech Entry</h3>
+                <p>Start with WhatsApp + Google Form + UPI. Scale to app when ready!</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🏘️</div>
+                <h3>Easy Scaling</h3>
+                <p>Expand society by society, city by city with proven model.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🌱</div>
+                <h3>Eco-Friendly</h3>
+                <p>Partner with local artisans for sustainable, eco-friendly festival products.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="stats-section">
+        <div class="container">
+            <h2 class="section-title">📊 By The Numbers</h2>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="number">5-6</div>
+                    <div class="label">Campaigns Per Year</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">10-15</div>
+                    <div class="label">Days Per Campaign</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">15-30%</div>
+                    <div class="label">Product Markup</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">₹50-100</div>
+                    <div class="label">Advance Per Order</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-section">
+        <h2>Ready to Transform Festival Shopping?</h2>
+        <p class="chaicheers-tag">☕ ChaiCheers to smart, sustainable celebrations! 🎊</p>
+        <p style="max-width: 800px; margin: 20px auto; font-size: 1.2em; opacity: 0.95;">
+            Start with one festival, scale to your entire community. Build trust, earn profits, and make every celebration special.
+        </p>
+        <div class="cta-buttons">
+            <button class="cta-btn cta-btn-primary">Launch Your SeasonKart</button>
+            <button class="cta-btn cta-btn-secondary">Download Business Plan</button>
+        </div>
+        <div style="margin-top: 50px; padding: 30px; background: rgba(255,255,255,0.1); border-radius: 15px; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <h3 style="margin-bottom: 15px; font-size: 1.5em;">🚀 Quick Start Plan</h3>
+            <p style="text-align: left; line-height: 2;">
+                <strong>Step 1:</strong> Pick one festival (Diwali recommended)<br>
+                <strong>Step 2:</strong> Partner with 1-2 suppliers<br>
+                <strong>Step 3:</strong> Create WhatsApp catalog<br>
+                <strong>Step 4:</strong> Share in society groups + collect pre-orders<br>
+                <strong>Step 5:</strong> Bulk order → deliver → repeat success! ☕
+            </p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><strong>SeasonKart</strong> - Celebrating Together, Growing Together</p>
+        <p>☕ ChaiCheers to every festival! 🎉</p>
+        <p style="margin-top: 20px; opacity: 0.7;">Your Local Seasonal Shop App • Community First • Sustainable Growth</p>
+    </div>
+
+    <script>
+        // Add smooth scroll behavior
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.timeline-item, .feature-card, .revenue-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
