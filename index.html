@@ -12,90 +12,158 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: #1a202c;
             overflow-x: hidden;
+            background: #f7fafc;
         }
 
+        /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 100px 20px;
+            padding: 120px 20px 80px;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
 
         .hero::before {
-            content: '🪔✨🎉🎊🌸';
+            content: '';
             position: absolute;
-            font-size: 80px;
-            opacity: 0.1;
-            top: 20%;
-            left: 10%;
-            animation: float 6s ease-in-out infinite;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,144C960,149,1056,139,1152,122.7C1248,107,1344,85,1392,74.7L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+            opacity: 0.3;
         }
 
-        .hero::after {
-            content: '🎆🪁🎁🕉️🌺';
-            position: absolute;
-            font-size: 80px;
-            opacity: 0.1;
-            bottom: 20%;
-            right: 10%;
-            animation: float 8s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .hero h1 {
-            font-size: 3.5em;
+            font-size: 4em;
             margin-bottom: 20px;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 800;
+            letter-spacing: -1px;
+            animation: fadeInUp 0.8s ease-out;
         }
 
         .hero .tagline {
             font-size: 1.5em;
             margin-bottom: 15px;
             font-weight: 300;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
         }
 
-        .hero .chaicheers {
-            background: rgba(255,255,255,0.2);
+        .hero .subtitle {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        .chaicheers-badge {
+            background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
-            padding: 12px 30px;
+            padding: 15px 35px;
             border-radius: 50px;
             display: inline-block;
-            margin-top: 20px;
+            margin: 20px 0;
             font-size: 1.1em;
-            font-weight: 500;
-            border: 2px solid rgba(255,255,255,0.3);
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
         }
 
-        .cta-button {
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+            animation: fadeInUp 0.8s ease-out 0.8s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn {
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-primary {
             background: white;
             color: #667eea;
-            padding: 15px 40px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2em;
-            font-weight: 600;
-            margin-top: 30px;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
-        .cta-button:hover {
+        .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
 
+        .btn-chaicheers {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.3);
+        }
+
+        .btn-chaicheers:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(245, 87, 108, 0.5);
+        }
+
+        /* Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -104,60 +172,82 @@
 
         .section-title {
             text-align: center;
-            font-size: 2.5em;
-            margin-bottom: 50px;
-            color: #667eea;
-            position: relative;
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            margin: 20px auto;
-            border-radius: 2px;
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2em;
+            color: #718096;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .timeline {
-            position: relative;
-            padding: 20px 0;
+        /* Timeline */
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
         }
 
-        .timeline-item {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        .timeline-card {
+            background: white;
             padding: 30px;
-            margin: 30px 0;
-            border-radius: 15px;
-            border-left: 6px solid #667eea;
-            transition: all 0.3s;
-            cursor: pointer;
+            border-radius: 20px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
         }
 
-        .timeline-item:hover {
-            transform: translateX(10px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        .timeline-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
 
-        .timeline-item h3 {
+        .timeline-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.15);
+            border-color: #667eea;
+        }
+
+        .timeline-card .month {
             color: #667eea;
-            font-size: 1.5em;
+            font-weight: 700;
+            font-size: 1.1em;
             margin-bottom: 10px;
         }
 
-        .timeline-item .festival {
-            color: #764ba2;
-            font-weight: 600;
-            margin-bottom: 10px;
+        .timeline-card .festival {
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #2d3748;
         }
 
-        .timeline-item .items {
-            color: #555;
+        .timeline-card .items {
+            color: #718096;
             line-height: 1.8;
+            font-size: 0.95em;
         }
 
-        .features {
+        /* Features */
+        .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
@@ -168,114 +258,184 @@
             background: white;
             padding: 40px 30px;
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
             text-align: center;
-            transition: all 0.3s;
-            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
         .feature-card:hover {
             transform: translateY(-10px);
-            border-color: #667eea;
-            box-shadow: 0 15px 50px rgba(102, 126, 234, 0.2);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.15);
         }
 
         .feature-card .icon {
             font-size: 4em;
             margin-bottom: 20px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover .icon {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .feature-card h3 {
-            color: #667eea;
+            color: #2d3748;
             margin-bottom: 15px;
             font-size: 1.4em;
+            font-weight: 700;
         }
 
         .feature-card p {
-            color: #666;
-            line-height: 1.6;
+            color: #718096;
+            line-height: 1.7;
         }
 
+        /* Revenue Section */
         .revenue-section {
             background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
             padding: 80px 20px;
+            position: relative;
         }
 
-        .revenue-cards {
+        .revenue-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 25px;
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 40px auto;
         }
 
         .revenue-card {
             background: white;
-            padding: 30px;
-            border-radius: 15px;
+            padding: 35px;
+            border-radius: 20px;
             text-align: center;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .revenue-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
         }
 
         .revenue-card h4 {
-            color: #ff6b6b;
+            color: #667eea;
             font-size: 1.3em;
             margin-bottom: 15px;
+            font-weight: 700;
         }
 
         .revenue-card .amount {
-            font-size: 2em;
-            color: #667eea;
-            font-weight: 700;
+            font-size: 2.5em;
+            color: #f5576c;
+            font-weight: 800;
             margin: 15px 0;
         }
 
+        .revenue-card p {
+            color: #718096;
+            font-size: 0.95em;
+        }
+
+        .total-revenue {
+            background: white;
+            display: inline-block;
+            padding: 40px 70px;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+            margin-top: 50px;
+        }
+
+        .total-revenue h3 {
+            color: #667eea;
+            font-size: 2.2em;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .total-revenue p {
+            color: #718096;
+            font-size: 1.1em;
+        }
+
+        /* Stats Section */
         .stats-section {
-            background: #f8f9fa;
+            background: #f7fafc;
             padding: 80px 20px;
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 30px;
             max-width: 1000px;
             margin: 40px auto 0;
         }
 
-        .stat-box {
+        .stat-card {
             text-align: center;
-            padding: 30px;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
         }
 
-        .stat-box .number {
-            font-size: 3em;
-            color: #667eea;
-            font-weight: 700;
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 35px rgba(102, 126, 234, 0.15);
         }
 
-        .stat-box .label {
-            color: #666;
-            font-size: 1.1em;
-            margin-top: 10px;
+        .stat-card .number {
+            font-size: 3.5em;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            margin-bottom: 10px;
         }
 
+        .stat-card .label {
+            color: #718096;
+            font-size: 1.05em;
+            font-weight: 600;
+        }
+
+        /* CTA Section */
         .cta-section {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             padding: 100px 20px;
             text-align: center;
+            position: relative;
+        }
+
+        .cta-content {
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .cta-section h2 {
-            font-size: 2.5em;
+            font-size: 3em;
             margin-bottom: 20px;
+            font-weight: 800;
         }
 
-        .cta-section .chaicheers-tag {
+        .cta-section .subtitle {
             font-size: 1.3em;
             margin: 20px 0;
+            opacity: 0.95;
+        }
+
+        .cta-section .description {
+            font-size: 1.15em;
             opacity: 0.9;
+            margin: 30px 0;
+            line-height: 1.8;
         }
 
         .cta-buttons {
@@ -286,118 +446,241 @@
             margin-top: 40px;
         }
 
-        .cta-btn {
-            padding: 15px 35px;
-            border-radius: 50px;
-            font-size: 1.1em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: none;
-        }
-
-        .cta-btn-primary {
-            background: white;
-            color: #667eea;
-        }
-
-        .cta-btn-secondary {
+        .btn-secondary {
             background: transparent;
             color: white;
             border: 2px solid white;
         }
 
-        .cta-btn:hover {
-            transform: scale(1.05);
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-3px);
         }
 
+        .quick-start {
+            margin-top: 60px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            text-align: left;
+        }
+
+        .quick-start h3 {
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .quick-start-steps {
+            display: grid;
+            gap: 15px;
+        }
+
+        .step {
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            font-size: 1.05em;
+            line-height: 1.6;
+        }
+
+        .step strong {
+            color: #ffd700;
+        }
+
+        /* Footer */
         .footer {
             background: #2d3748;
             color: white;
-            padding: 40px 20px;
+            padding: 50px 20px;
             text-align: center;
         }
 
         .footer p {
-            margin: 10px 0;
+            margin: 12px 0;
+            opacity: 0.9;
         }
 
+        .footer .chaicheers-link {
+            display: inline-block;
+            margin: 20px 0;
+        }
+
+        /* Floating Button */
+        .floating-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1em;
+            box-shadow: 0 10px 40px rgba(245, 87, 108, 0.4);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .floating-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 50px rgba(245, 87, 108, 0.6);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 10px 40px rgba(245, 87, 108, 0.4);
+            }
+            50% {
+                box-shadow: 0 10px 40px rgba(245, 87, 108, 0.7);
+            }
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.5em;
             }
-            
+
             .hero .tagline {
                 font-size: 1.2em;
             }
-            
+
             .section-title {
                 font-size: 2em;
             }
+
+            .timeline-grid,
+            .features-grid,
+            .revenue-grid,
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .floating-btn {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 24px;
+                font-size: 0.95em;
+            }
+
+            .btn {
+                padding: 14px 30px;
+                font-size: 1em;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-section h2 {
+                font-size: 2em;
+            }
+
+            .quick-start {
+                padding: 25px;
+            }
+
+            .total-revenue {
+                padding: 30px 40px;
+            }
+
+            .total-revenue h3 {
+                font-size: 1.8em;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
+    <!-- Hero Section -->
     <div class="hero">
-        <h1>🎉 SeasonKart 🎊</h1>
-        <p class="tagline">Your Local Seasonal Shop App</p>
-        <p>Pre-book festival essentials • Zero wastage • Community trust</p>
-        <div class="chaicheers">☕ ChaiCheers to celebrating together! 🎉</div>
-        <button class="cta-button">Start Pre-Booking Now</button>
+        <div class="hero-content">
+            <h1>🎉 SeasonKart 🎊</h1>
+            <p class="tagline">Your Local Seasonal Shop App</p>
+            <p class="subtitle">Pre-book festival essentials • Zero wastage • Community trust</p>
+            <div class="chaicheers-badge">☕ ChaiCheers to celebrating together! 🎉</div>
+            <div class="hero-buttons">
+                <button class="btn btn-primary"><span>Start Pre-Booking Now</span></button>
+                <a href="https://cspdgrit.github.io/chaicheers/" target="_blank" class="btn btn-chaicheers"><span>☕ Visit ChaiCheers</span></a>
+            </div>
+        </div>
     </div>
 
+    <!-- How It Works Section -->
     <div class="container">
         <h2 class="section-title">🌸 How SeasonKart Works</h2>
+        <p class="section-subtitle">Festival-focused shopping made simple. Pre-order, save money, and celebrate together!</p>
         
-        <div class="timeline">
-            <div class="timeline-item">
-                <h3>August - September</h3>
+        <div class="timeline-grid fade-in">
+            <div class="timeline-card">
+                <div class="month">August - September</div>
                 <div class="festival">🪔 Rakhi & Ganesh Chaturthi</div>
                 <div class="items">Rakhis • Eco-Ganesh idols • Puja kits • Decorative items</div>
             </div>
 
-            <div class="timeline-item">
-                <h3>October - November</h3>
+            <div class="timeline-card">
+                <div class="month">October - November</div>
                 <div class="festival">🪔 Navratri & Diwali</div>
                 <div class="items">Diyas • Sweets • Crackers • Lanterns • Candles • Fairy lights</div>
             </div>
 
-            <div class="timeline-item">
-                <h3>January</h3>
+            <div class="timeline-card">
+                <div class="month">January</div>
                 <div class="festival">🪁 Sankranti & Pongal</div>
                 <div class="items">Kites • Manjha • Til sweets • Sugarcane • Traditional items</div>
             </div>
 
-            <div class="timeline-item">
-                <h3>March</h3>
+            <div class="timeline-card">
+                <div class="month">March</div>
                 <div class="festival">🎨 Holi</div>
                 <div class="items">Herbal colors • Pichkaris • White T-shirts • Organic gulal</div>
             </div>
 
-            <div class="timeline-item">
-                <h3>April - May</h3>
+            <div class="timeline-card">
+                <div class="month">April - May</div>
                 <div class="festival">☀️ Summer Essentials</div>
                 <div class="items">Water bottles • Coolers • Kids' pool toys • Summer gear</div>
             </div>
 
-            <div class="timeline-item">
-                <h3>July</h3>
+            <div class="timeline-card">
+                <div class="month">July</div>
                 <div class="festival">🌧️ Monsoon Season</div>
                 <div class="items">Umbrellas • Raincoats • Waterproof covers</div>
             </div>
 
-            <div class="timeline-item">
-                <h3>December</h3>
+            <div class="timeline-card">
+                <div class="month">December</div>
                 <div class="festival">🎄 Christmas & New Year</div>
                 <div class="items">Stars • Décor • Santa caps • Cakes • Party supplies</div>
             </div>
         </div>
     </div>
 
+    <!-- Revenue Section -->
     <div class="revenue-section">
         <div class="container">
-            <h2 class="section-title" style="color: #fff;">💰 Revenue Potential</h2>
-            <div class="revenue-cards">
+            <h2 class="section-title" style="color: white; -webkit-text-fill-color: white;">💰 Revenue Potential</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">Real numbers from successful campaigns</p>
+            
+            <div class="revenue-grid fade-in">
                 <div class="revenue-card">
                     <h4>Diwali Campaign</h4>
                     <div class="amount">₹10,000</div>
@@ -419,18 +702,22 @@
                     <p>90 orders × ₹80 margin</p>
                 </div>
             </div>
-            <div style="text-align: center; margin-top: 40px;">
-                <div style="background: white; display: inline-block; padding: 30px 60px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.15);">
-                    <h3 style="color: #667eea; font-size: 2em;">Annual Profit: ₹30,000 - ₹50,000+</h3>
-                    <p style="color: #666; margin-top: 10px;">☕ Scale across societies for ₹2-5 Lakh - ChaiCheers to that! 🎉</p>
+            
+            <div style="text-align: center;">
+                <div class="total-revenue fade-in">
+                    <h3>Annual Profit: ₹30,000 - ₹50,000+</h3>
+                    <p>☕ Scale across societies for ₹2-5 Lakh - ChaiCheers to that! 🎉</p>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Features Section -->
     <div class="container">
         <h2 class="section-title">✨ Why SeasonKart Works</h2>
-        <div class="features">
+        <p class="section-subtitle">Built for Indian communities with proven business model</p>
+        
+        <div class="features-grid fade-in">
             <div class="feature-card">
                 <div class="icon">🎯</div>
                 <h3>Predictable Demand</h3>
@@ -464,23 +751,26 @@
         </div>
     </div>
 
+    <!-- Stats Section -->
     <div class="stats-section">
         <div class="container">
             <h2 class="section-title">📊 By The Numbers</h2>
-            <div class="stats-grid">
-                <div class="stat-box">
+            <p class="section-subtitle">What makes SeasonKart a winning formula</p>
+            
+            <div class="stats-grid fade-in">
+                <div class="stat-card">
                     <div class="number">5-6</div>
                     <div class="label">Campaigns Per Year</div>
                 </div>
-                <div class="stat-box">
+                <div class="stat-card">
                     <div class="number">10-15</div>
                     <div class="label">Days Per Campaign</div>
                 </div>
-                <div class="stat-box">
+                <div class="stat-card">
                     <div class="number">15-30%</div>
                     <div class="label">Product Markup</div>
                 </div>
-                <div class="stat-box">
+                <div class="stat-card">
                     <div class="number">₹50-100</div>
                     <div class="label">Advance Per Order</div>
                 </div>
@@ -488,65 +778,113 @@
         </div>
     </div>
 
+    <!-- CTA Section -->
     <div class="cta-section">
-        <h2>Ready to Transform Festival Shopping?</h2>
-        <p class="chaicheers-tag">☕ ChaiCheers to smart, sustainable celebrations! 🎊</p>
-        <p style="max-width: 800px; margin: 20px auto; font-size: 1.2em; opacity: 0.95;">
-            Start with one festival, scale to your entire community. Build trust, earn profits, and make every celebration special.
-        </p>
-        <div class="cta-buttons">
-            <button class="cta-btn cta-btn-primary">Launch Your SeasonKart</button>
-            <button class="cta-btn cta-btn-secondary">Download Business Plan</button>
-        </div>
-        <div style="margin-top: 50px; padding: 30px; background: rgba(255,255,255,0.1); border-radius: 15px; max-width: 800px; margin-left: auto; margin-right: auto;">
-            <h3 style="margin-bottom: 15px; font-size: 1.5em;">🚀 Quick Start Plan</h3>
-            <p style="text-align: left; line-height: 2;">
-                <strong>Step 1:</strong> Pick one festival (Diwali recommended)<br>
-                <strong>Step 2:</strong> Partner with 1-2 suppliers<br>
-                <strong>Step 3:</strong> Create WhatsApp catalog<br>
-                <strong>Step 4:</strong> Share in society groups + collect pre-orders<br>
-                <strong>Step 5:</strong> Bulk order → deliver → repeat success! ☕
+        <div class="cta-content">
+            <h2>Ready to Transform Festival Shopping?</h2>
+            <p class="subtitle">☕ ChaiCheers to smart, sustainable celebrations! 🎊</p>
+            <p class="description">
+                Start with one festival, scale to your entire community. Build trust, earn profits, and make every celebration special.
             </p>
+            
+            <div class="cta-buttons">
+                <button class="btn btn-primary"><span>Launch Your SeasonKart</span></button>
+                <button class="btn btn-secondary"><span>Download Business Plan</span></button>
+                <a href="https://cspdgrit.github.io/chaicheers/" target="_blank" class="btn btn-chaicheers"><span>☕ ChaiCheers Hub</span></a>
+            </div>
+
+            <div class="quick-start">
+                <h3>🚀 Quick Start Plan</h3>
+                <div class="quick-start-steps">
+                    <div class="step"><strong>Step 1:</strong> Pick one festival (Diwali recommended)</div>
+                    <div class="step"><strong>Step 2:</strong> Partner with 1-2 suppliers</div>
+                    <div class="step"><strong>Step 3:</strong> Create WhatsApp catalog</div>
+                    <div class="step"><strong>Step 4:</strong> Share in society groups + collect pre-orders</div>
+                    <div class="step"><strong>Step 5:</strong> Bulk order → deliver → repeat success! ☕</div>
+                </div>
+            </div>
         </div>
     </div>
 
+    <!-- Footer -->
     <div class="footer">
-        <p><strong>SeasonKart</strong> - Celebrating Together, Growing Together</p>
+        <p style="font-size: 1.3em; font-weight: 700;">SeasonKart</p>
+        <p>Celebrating Together, Growing Together</p>
         <p>☕ ChaiCheers to every festival! 🎉</p>
-        <p style="margin-top: 20px; opacity: 0.7;">Your Local Seasonal Shop App • Community First • Sustainable Growth</p>
+        <a href="https://cspdgrit.github.io/chaicheers/" target="_blank" class="btn btn-chaicheers chaicheers-link"><span>☕ Explore ChaiCheers</span></a>
+        <p style="margin-top: 30px; opacity: 0.7;">Your Local Seasonal Shop App • Community First • Sustainable Growth</p>
     </div>
+
+    <!-- Floating ChaiCheers Button -->
+    <a href="https://cspdgrit.github.io/chaicheers/" target="_blank" class="floating-btn">☕ ChaiCheers</a>
 
     <script>
-        // Add smooth scroll behavior
-        document.querySelectorAll('button').forEach(button => {
-            button.addEventListener('click', function() {
-                this.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 150);
+        // Smooth button animations
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px)';
+            });
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
             });
         });
 
-        // Add animation on scroll
+        // Scroll animations
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            rootMargin: '0px 0px -100px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('visible');
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('.timeline-item, .feature-card, .revenue-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'all 0.6s ease-out';
+        document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
+        });
+
+        // Parallax effect for hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add ripple effect to cards
+        document.querySelectorAll('.timeline-card, .feature-card, .revenue-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                const ripple = document.createElement('div');
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                ripple.style.position = 'absolute';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.style.width = '0';
+                ripple.style.height = '0';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(102, 126, 234, 0.3)';
+                ripple.style.transform = 'translate(-50%, -50%)';
+                ripple.style.pointerEvents = 'none';
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.style.width = '500px';
+                    ripple.style.height = '500px';
+                    ripple.style.opacity = '0';
+                    ripple.style.transition = 'all 0.6s ease-out';
+                }, 0);
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
         });
     </script>
 </body>
